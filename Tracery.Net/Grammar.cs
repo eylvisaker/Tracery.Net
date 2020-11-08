@@ -25,7 +25,7 @@ namespace TraceryNet
         /// <summary>
         /// RNG to pick from multiple rules.
         /// </summary>
-        private Random Random = new Random();
+        public Random Random = new Random();
 
         /// <summary>
         /// Regex for matching expansion symbols.
@@ -54,17 +54,23 @@ namespace TraceryNet
         /// </summary>
         /// <param name="source"></param>
         public Grammar(FileInfo source) : this(File.ReadAllText(source.FullName))
-        {
-        }
+        { }
 
         /// <summary>
         /// Load the rules list by deserializing the source as a json object.
         /// </summary>
         /// <param name="source"></param>
-        public Grammar(string source)
+        public Grammar(string source) : this(PopulateRules(source))
+        { }
+
+        /// <summary>
+        /// Load the rules list by deserializing the source as a json object.
+        /// </summary>
+        /// <param name="source"></param>
+        public Grammar(JObject rules)
         {
             // Populate the rules list
-            PopulateRules(source);
+            Rules = rules;
 
             // Set up the function table
             ModifierLookup = new Dictionary<string, Func<string, string>>
@@ -78,7 +84,7 @@ namespace TraceryNet
                 { "ed",            Modifiers.Ed },
                 { "capitalizeAll", Modifiers.CapitalizeAll }
             };
-            
+
             // Initialize the save storage
             SaveData = new Dictionary<string, string>();
         }
@@ -88,13 +94,13 @@ namespace TraceryNet
         /// object.
         /// </summary>
         /// <param name="source"></param>
-        private void PopulateRules(string source)
+        public static JObject PopulateRules(string source)
         {
             // Is it valid json?
             if (InputValidators.IsValidJson(source))
             {
                 // Deserialize directly
-                Rules = JsonConvert.DeserializeObject<dynamic>(source);
+                return JsonConvert.DeserializeObject<dynamic>(source);
             }
             // Is it valid yaml?
             else if (InputValidators.IsValidYaml(source))
@@ -102,15 +108,20 @@ namespace TraceryNet
                 // Deserialize yaml
                 var deserializer = new Deserializer();
                 var yamlObject = deserializer.Deserialize(new StringReader(source));
-
-                // Reserialize the yaml as json into the Rules object
-                var rules = JsonConvert.SerializeObject(yamlObject);
-                Rules = JsonConvert.DeserializeObject<dynamic>(rules);
+                return PopulateRules(yamlObject);
             }
             else
             {
                 throw new Exception("Grammar file doesn't seem to be valid JSON or YAML!");
             }
+        }
+
+        public static JObject PopulateRules(object yamlObject)
+        {
+            // Reserialize the yaml as json into the Rules object
+            var rules = JsonConvert.SerializeObject(yamlObject);
+
+            return JsonConvert.DeserializeObject<dynamic>(rules);
         }
 
         /// <summary>
@@ -145,7 +156,7 @@ namespace TraceryNet
             foreach (Match match in expansionMatches)
             {
                 ResolveSaveSymbols(match.Value);
-                
+
                 // Remove the # surrounding the symbol name
                 var matchName = match.Value.Replace("#", "");
 
@@ -162,14 +173,14 @@ namespace TraceryNet
                 modifiers = GetModifiers(match.Value);
 
                 // If there's no modifier with that name then skip
-                if(modifiers == null)
+                if (modifiers == null)
                 {
                     continue;
                 }
 
                 // Get the selected rule
                 var selectedRule = Rules[matchName] ?? SaveData[matchName] ?? matchName;
-            
+
                 // If the rule has any children then pick one at random
                 if (selectedRule.Type == JTokenType.Array)
                 {
@@ -181,7 +192,7 @@ namespace TraceryNet
 
                     rule = rule.Replace(match.Value, resolved);
                 }
-                else 
+                else
                 {
                     // Otherwise flatten it
                     var resolved = Flatten(selectedRule.ToString());
@@ -205,10 +216,10 @@ namespace TraceryNet
             foreach (Match saveMatch in SaveSymbolRegex.Matches(rule))
             {
                 // [hero:#name#]
-                var save = saveMatch.Value.Replace("[", "").Replace("]",  "");
+                var save = saveMatch.Value.Replace("[", "").Replace("]", "");
 
                 // If it's just [hero], then flatten #hero#
-                if(!save.Contains(":"))
+                if (!save.Contains(":"))
                 {
                     Flatten($"#{save}#");
                     continue;
@@ -263,7 +274,7 @@ namespace TraceryNet
             foreach (var modifier in modifiers)
             {
                 // If there's no modifier by this name in the list, skip it
-                if(!ModifierLookup.ContainsKey(modifier))
+                if (!ModifierLookup.ContainsKey(modifier))
                     continue;
 
                 // Otherwise execute the function and take the output
@@ -275,4 +286,3 @@ namespace TraceryNet
         }
     }
 }
- 
