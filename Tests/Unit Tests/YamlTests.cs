@@ -1,13 +1,13 @@
-﻿using System.Text;
-using NUnit.Framework;
+﻿using FluentAssert;
+using System.Text;
 using TraceryNet;
+using Xunit;
 
 namespace Tests.Unit_Tests
 {
-    [TestFixture]
-    class YamlTests
+    public class YamlTests
     {
-        [Test]
+        [Fact]
         public void YamlTests_HelloWorld_HelloWorld()
         {
             // Arrange
@@ -22,10 +22,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "Hello world");
+            output.ShouldBeEqualTo("Hello world");
         }
 
-        [Test]
+        [Fact]
         public void YamlTests_IncreasedExpansionDepth_HelloWorld()
         {
             // Arrange
@@ -44,7 +44,7 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "Hello world");
+            output.ShouldBeEqualTo("Hello world");
         }
     }
 }

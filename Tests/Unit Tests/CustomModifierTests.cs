@@ -1,12 +1,12 @@
 ﻿using System;
-using NUnit.Framework;
+using FluentAssert;
+using Xunit;
 
 namespace Tests.Unit_Tests
 {
-    [TestFixture]
     public class CustomModifiersTest
     {
-        [Test]
+        [Fact]
         public void CustomModifiers_MakeEverythingHelloWorld_HelloWorld()
         {
             // Arrange
@@ -27,10 +27,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "hello world");
+            output.ShouldBeEqualTo("hello world");
         }
 
-        [Test]
+        [Fact]
         public void CustomModifiers_Slurring_Slurring()
         {
             // Arrange
@@ -44,11 +44,11 @@ namespace Tests.Unit_Tests
                 var o = "";
                 var vowels = new char[] { 'a', 'e', 'i', 'o', 'u' };
 
-                foreach(char c in i)
+                foreach (char c in i)
                 {
                     o += c;
 
-                    if(Array.IndexOf(vowels, c) > -1)
+                    if (Array.IndexOf(vowels, c) > -1)
                     {
                         o += c;
                     }
@@ -64,10 +64,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "thiis iis aa loong seenteencee reeaady foor sluurriing");
+            output.ShouldBeEqualTo("thiis iis aa loong seenteencee reeaady foor sluurriing");
         }
 
-        [Test]
+        [Fact]
         public void CustomModifiers_ToUpper_ToUpper()
         {
             // Arrange
@@ -88,7 +88,7 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "HELLO CAT");
+            output.ShouldBeEqualTo("HELLO CAT");
         }
     }
 }

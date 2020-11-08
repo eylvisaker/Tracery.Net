@@ -1,11 +1,12 @@
-﻿using NUnit.Framework;
+﻿
+using FluentAssert;
+using Xunit;
 
 namespace Tests.Unit_Tests
 {
-    [TestFixture]
     public class FlattenTests
     {
-        [Test]
+        [Fact]
         public void Flatten_HelloWorld_Success()
         {
             // Arrange
@@ -19,10 +20,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "hello world");
+            output.ShouldBeEqualTo("hello world");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_ExpandSymbol_Animal()
         {
             // Arrange
@@ -37,10 +38,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "hello cat");
+            output.ShouldBeEqualTo("hello cat");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_Capitalize_FirstLetterCapitalized()
         {
             // Arrange
@@ -55,10 +56,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "hello Cat");
+            output.ShouldBeEqualTo("hello Cat");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_BeeSpeak_Beezz()
         {
             // Arrange
@@ -73,10 +74,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "beezzz are very important");
+            output.ShouldBeEqualTo("beezzz are very important");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_Comma_HelloCommaWorld()
         {
             // Arrange
@@ -92,10 +93,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "Hello, world");
+            output.ShouldBeEqualTo("Hello, world");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_InQuotes_HelloQuoteWorldQuote()
         {
             // Arrange
@@ -111,10 +112,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "Hello \"world\"");
+            output.ShouldBeEqualTo("Hello \"world\"");
         }
         
-        [Test]
+        [Fact]
         public void Flatten_A_ACat()
         {
             // Arrange
@@ -129,10 +130,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you are a cat");
+            output.ShouldBeEqualTo("you are a cat");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_A_AnElephant()
         {
             // Arrange
@@ -147,10 +148,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you are an elephant");
+            output.ShouldBeEqualTo("you are an elephant");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_CaptitalizeA_ACat()
         {
             // Arrange
@@ -165,10 +166,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you are a Cat");
+            output.ShouldBeEqualTo("you are a Cat");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_ACaptitalize_ACat()
         {
             // Arrange
@@ -183,10 +184,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you are A cat");
+            output.ShouldBeEqualTo("you are A cat");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_CaptitalizeAllCuteCat_CuteCat()
         {
             // Arrange
@@ -201,10 +202,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you are a Cute Cat");
+            output.ShouldBeEqualTo("you are a Cute Cat");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_PastTensifyBully_Bullied()
         {
             // Arrange
@@ -219,10 +220,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you bullied");
+            output.ShouldBeEqualTo("you bullied");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_PastTensifyQuack_Quacked()
         {
             // Arrange
@@ -237,10 +238,10 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you quacked");
+            output.ShouldBeEqualTo("you quacked");
         }
 
-        [Test]
+        [Fact]
         public void Flatten_PastTensifyCall_Called()
         {
             // Arrange
@@ -255,7 +256,7 @@ namespace Tests.Unit_Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.AreEqual(output, "you called?");
+            output.ShouldBeEqualTo("you called?");
         }
     }
 }

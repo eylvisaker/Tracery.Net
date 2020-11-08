@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+﻿using FluentAssert;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
     public class SaveSymbolTests
     {
-        [Test]
+        [Fact]
         public void SaveSymbol_NoExpansionSymbol_Saves()
         {
             // Arrange
@@ -20,10 +20,10 @@ namespace Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.IsTrue(output == "His name was Alfred.");
+            output.ShouldBeEqualTo("His name was Alfred.");
         }
 
-        [Test]
+        [Fact]
         public void SaveSymbol_OneExpansionSymbol_Saves()
         {
             // Arrange
@@ -39,10 +39,10 @@ namespace Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.IsTrue(output == "His name was Alfred.");
+            output .ShouldBeEqualTo("His name was Alfred.");
         }
 
-        [Test]
+        [Fact]
         public void SaveSymbol_NoExpansionSymbolWithModifier_Saves()
         {
             // Arrange
@@ -57,10 +57,10 @@ namespace Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.IsTrue(output == "His name was Alfred.");
+            output.ShouldBeEqualTo("His name was Alfred.");
         }
 
-        [Test]
+        [Fact]
         public void SaveSymbol_OneLevelDeep_Saves()
         {
             // Arrange
@@ -75,10 +75,10 @@ namespace Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.IsTrue(output == "Luigi");
+            output.ShouldBeEqualTo("Luigi");
         }
 
-        [Test]
+        [Fact]
         public void SaveSymbol_TwoLevelsDeep_Saves()
         {
             // Arrange
@@ -94,7 +94,7 @@ namespace Tests
             var output = grammar.Flatten("#origin#");
 
             // Assert
-            Assert.IsTrue(output == "Mario");
+            output.ShouldBeEqualTo("Mario");
         }
     }
 }

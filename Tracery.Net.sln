@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracery.Net", "Tracery.Net\Tracery.Net.csproj", "{976CBF0D-B07C-4E91-9C00-BEE376102717}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracery.Net", "Tracery.Net\Tracery.Net.csproj", "{CA5DC202-FA88-4E6B-A84A-9FFA1D98DC6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C6E5AAD7-0FD9-447D-8315-CB2C59F4D935}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceryNetExample", "TraceryNetExample\TraceryNetExample.csproj", "{4C7F1A81-EAC4-446C-BFAA-76C16A77F880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceryNetExample", "TraceryNetExample\TraceryNetExample.csproj", "{DF6C7759-EE69-4360-8481-10C599C3CBCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6F4D9E28-A4CC-47CA-BA6D-78389EB81711}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,20 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{976CBF0D-B07C-4E91-9C00-BEE376102717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{976CBF0D-B07C-4E91-9C00-BEE376102717}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{976CBF0D-B07C-4E91-9C00-BEE376102717}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{976CBF0D-B07C-4E91-9C00-BEE376102717}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6E5AAD7-0FD9-447D-8315-CB2C59F4D935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6E5AAD7-0FD9-447D-8315-CB2C59F4D935}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6E5AAD7-0FD9-447D-8315-CB2C59F4D935}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6E5AAD7-0FD9-447D-8315-CB2C59F4D935}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF6C7759-EE69-4360-8481-10C599C3CBCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF6C7759-EE69-4360-8481-10C599C3CBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF6C7759-EE69-4360-8481-10C599C3CBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF6C7759-EE69-4360-8481-10C599C3CBCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5DC202-FA88-4E6B-A84A-9FFA1D98DC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5DC202-FA88-4E6B-A84A-9FFA1D98DC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5DC202-FA88-4E6B-A84A-9FFA1D98DC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5DC202-FA88-4E6B-A84A-9FFA1D98DC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C7F1A81-EAC4-446C-BFAA-76C16A77F880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7F1A81-EAC4-446C-BFAA-76C16A77F880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7F1A81-EAC4-446C-BFAA-76C16A77F880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7F1A81-EAC4-446C-BFAA-76C16A77F880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F4D9E28-A4CC-47CA-BA6D-78389EB81711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F4D9E28-A4CC-47CA-BA6D-78389EB81711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F4D9E28-A4CC-47CA-BA6D-78389EB81711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F4D9E28-A4CC-47CA-BA6D-78389EB81711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA3910D6-54B2-430A-B3E2-F7BF5AA2C9B4}
 	EndGlobalSection
 EndGlobal
